@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { 
     Button, 
     Card, 
@@ -47,6 +47,18 @@ class LoginForm extends Component {
         );
     }
 
+    renderError() {
+        if (this.props.error) {
+            return (
+                <View style={{ backgroundColor: 'white' }}>
+                    <Text style={styles.errorTextMessage}> 
+                        {this.props.error}
+                    </Text>
+                </View>
+            );
+        }
+    }
+
     render() {
         return (
             <Card>
@@ -69,7 +81,7 @@ class LoginForm extends Component {
                     />
                 </CardSection>
 
-                <Text style={styles.errorTextMessage}>{this.state.error}</Text>
+                {this.renderError()}
 
                 <CardSection>
                     {this.renderButton()}
@@ -93,7 +105,8 @@ const mapStateToProps = (state) => {
     console.log(state);
     return {
         email: state.auth.email,
-        password: state.auth.password
+        password: state.auth.password,
+        error: state.auth.error
     };
 };
 
