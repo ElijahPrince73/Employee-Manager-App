@@ -1,15 +1,17 @@
 import { 
-    EMAIL_CHANGED, 
+    EMAIL_CHANGED,
     PASSWORD_CHANGED,
     LOGIN_USER_SUCCESS,
-    LOGIN_USER_FAILED
+    LOGIN_USER_FAILED,
+    LOGIN_USER
 } from '../actions/types';
 
-const INIT = { 
-    email: '', 
+const INIT = {
+    email: '',
     password: '',
     user: null,
-    error: ''
+    error: '',
+    loading: false
 };
 
 export default (state = INIT, action) => {
@@ -21,14 +23,21 @@ export default (state = INIT, action) => {
         case LOGIN_USER_SUCCESS: 
             return { 
                 ...state, 
-                user: action.payload, 
-                error: '' 
+                ...INIT,
+                user: action.payload
             };
         case LOGIN_USER_FAILED:
             return { 
                 ...state, 
-                error: 'Athentication Failed', 
-                password: '' 
+                error: 'Authentication Failed',
+                password: '',
+                loading: false
+            };
+        case LOGIN_USER: 
+            return { 
+                ...state, 
+                error: '',
+                loading: true
             };
         default:
         return state;

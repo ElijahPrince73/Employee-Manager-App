@@ -36,9 +36,10 @@ class LoginForm extends Component {
     }
 
     renderButton() {
-        if (this.state.loading) {
-            return (<Spinner size='small' />);
+        if (this.props.loading) {
+            return (<Spinner size='large' />);
         }
+        
         return (
             <Button 
                 cta='Login in' 
@@ -101,12 +102,13 @@ const styles = {
     }
 };
 
-const mapStateToProps = (state) => {
-    console.log(state);
+const mapStateToProps = ({ auth }) => {
+    const { email, password, error, loading } = auth;
     return {
-        email: state.auth.email,
-        password: state.auth.password,
-        error: state.auth.error
+        email,
+        password,
+        error,
+        loading
     };
 };
 
