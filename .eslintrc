@@ -1,6 +1,8 @@
 {
     "extends": "rallycoding",
     "rules": {
-        "arrow-body-style": "off"
+        "arrow-body-style": "off",
+        "import/no-unresolved": "off",
+        "react/self-closing-comp": "off"
     }
 }
