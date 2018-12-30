@@ -3,7 +3,8 @@ import { View } from 'react-native';
 
 const CardSection = (props) => {
     return (
-        <View style={styles.containerStyle}>
+        // Allows for us to use not the styles that we have but also any new ones we made
+        <View style={[styles.containerStyle, props.style]}>
             {props.children}
         </View>
     );
